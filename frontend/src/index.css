@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #f8fffe;
+  color: #1a1a1a;
+  font-family: 'Pretendard', 'Noto Sans KR', system-ui, -apple-system, sans-serif;
+}
+
+/* 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f0fdf4;
+}
+::-webkit-scrollbar-thumb {
+  background: #86efac;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #16a34a;
+}
+
+/* Canvas 커서 */
+canvas.roi-canvas {
+  cursor: crosshair;
+}
+
+/* 전체화면: 영상 컨테이너가 화면을 꽉 채우도록 */
+:fullscreen {
+  background: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0 !important;
+}
+:fullscreen img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+/* 전체화면에서도 버튼 보이게 */
+:fullscreen button {
+  opacity: 1 !important;
+}

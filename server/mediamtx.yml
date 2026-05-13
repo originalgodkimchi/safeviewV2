@@ -1,0 +1,41 @@
+# MediaMTX 설정 — SAFEVIEW RTSP 중계 서버
+# 공식 문서: https://github.com/bluenviron/mediamtx
+
+# ── 네트워크 주소 ──────────────────────────────────
+rtspAddress:    :8554   # RTSP 수신 포트 (카메라 → 서버)
+rtmpAddress:    :1935   # RTMP (비활성화)
+hlsAddress:     :8888   # HLS HTTP 포트 (브라우저 직접 재생용)
+webrtcAddress:  :8889   # WebRTC
+
+# ── HLS 설정 (브라우저 저지연 재생) ────────────────
+hls: yes
+hlsVariant: lowLatency   # 저지연 HLS
+hlsSegmentDuration: 1s
+hlsPartDuration: 200ms
+
+# ── 인증 (선택: 카메라 push 시 비밀번호 설정) ──────
+# authMethod: internal
+# authInternalUsers:
+#   - user: camera
+#     pass: your_password
+#     permissions:
+#       - action: publish
+#       - action: read
+
+# ── 스트림 경로 설정 ───────────────────────────────
+paths:
+
+  # 방법 A: 카메라가 서버로 직접 push
+  #   카메라에서 rtsp://서버IP:8554/cam1 으로 스트림 전송
+  cam1:
+    source: publisher
+
+  # 방법 B: 서버가 카메라를 pull (고정 IP 카메라)
+  #   아래 주석 해제하고 카메라 IP 입력
+  # cam1:
+  #   source: rtsp://카메라IP:554/stream
+  #   sourceOnDemand: yes
+
+  # 추가 카메라 (필요 시 동일하게 추가)
+  # cam2:
+  #   source: publisher
